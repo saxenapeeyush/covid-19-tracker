@@ -1,0 +1,19 @@
+.tab760TableContainer {
+  display:flex;
+  justify-content: space-evenly;
+  font-size:0.8em;
+  border:1px solid rgba(108, 117, 125, 0.125);
+  /* margin-top:1em; */
+  margin: 0.5rem 0.5rem;
+  margin-bottom:0em;
+  background: rgba(108, 117, 125, 0.180);
+  /* overflow:scroll; */
+}
+.tab760stickToTop {
+  z-index:111;
+  background-color:black;
+  /* position: sticky; */
+  top:0px;
+  overflow:hidden;
+  /* width:100%; */
+}

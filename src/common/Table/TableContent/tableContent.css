@@ -1,0 +1,36 @@
+.tc903TableContentContainer {
+  display: flex;
+  /* flex-wrap:wrap; */
+  justify-content: space-between;
+  font-size:12px;
+  border:2px dotted rgba(108, 117, 125, 0.125);
+  margin:0.5em 0.5em;
+  cursor: pointer;
+  transition-duration: 0.5s;
+  color:#bdbdbd;
+  text-decoration: none;
+  /* overflow: scroll; */
+}
+.tc903TableContentContainer:hover {
+  background :  rgba(108, 117, 125, 0.125);
+}
+.tc903TableContentContainer div {
+  width:10%;
+  margin:1em 0em;
+  cursor: pointer;
+  background-color: rgba(108, 117, 125, 0.125);
+  padding: 1em 1.3em;
+  border-radius: 5px;
+  letter-spacing: 0.3px;
+  font-weight: bold;
+  margin: 1em 1.5em;
+  transition-duration: 0.5s;
+  text-transform: capitalize;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  text-align: center;
+}
+.tc903TableContent {
+  text-transform: capitalize;
+}

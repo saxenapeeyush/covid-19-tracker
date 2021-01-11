@@ -43,11 +43,12 @@
 .car890CardInnerContainer .car890Count {
   font-weight: bold;
   font-size:1.4em;
-  margin:0.5em 0em;
+  margin:0.7em 0em;
   letter-spacing: 1px;
 }
 
 .car890CardInnerContainer .car890Title {
-  font-size:0.8em;
+  font-size:1em;
+  font-weight:bold;
   margin:1.2em 0em;
 }
