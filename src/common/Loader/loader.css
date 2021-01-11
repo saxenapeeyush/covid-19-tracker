@@ -1,0 +1,20 @@
+.load357LoaderContainer {
+  margin:0.6em 0em;
+}
+
+.load357Loader {
+  font-size:1.4em;
+  animation: spinLoader 1s infinite;
+}
+
+@keyframes spinLoader {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
