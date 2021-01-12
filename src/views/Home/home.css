@@ -3,3 +3,11 @@
   flex-wrap: wrap;
   justify-content: space-around;
 }
+
+.ho378HomeInputBoxContainer {
+  position: relative;
+}
+
+.ho378HomeBox {
+  position: absolute;
+}

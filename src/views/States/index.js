@@ -1,21 +1,155 @@
 import React from 'react';
+import { Instance } from '../../utils/configs/axios';
+
+import { SORT_DATA } from '../../utils/helpers/sorting';
+
+import Card from '../../common/Card';
+import Table from '../../common/Table';
+
+import './states.css';
 
 class States extends React.Component {
   constructor(props) {
 
     super(props);
 
-    console.log(this.props);
+    this.state = {
+      totalConfirmed : 0,
+      totalActive : 0,
+      totalRecovered: 0,
+      totalDeceased : 0 ,
+      isDataArrived : false,
+      shouldRedirectError :false,
+      allData : []};
+
+  }
+
+  componentDidMount() {
+
+    this.configState();
 
   }
 
   render() {
+
+    const { shouldRedirectError } = this.state;
+
+     if (shouldRedirectError) {
+      setTimeout(() => {
+        this.props.history.push('/');
+     });
+     return null;
+    }
+
     return (
 
-      <div> This is State Component!!</div>
+      <div>
+
+        {this.getCards()}
+
+        {this.getTable()}
+
+      </div>
 
     );
   }
+
+  configState = async () => {
+
+    const { stateName } = this.props.match.params;
+
+
+    const allData = await Instance.get('/v4/min/data.min.json');
+
+    const newData = allData?.data;
+
+    const data = newData[stateName];
+
+    if(!data || stateName === 'TT') {
+      this.setState({shouldRedirectError : true});
+      return;
+    }
+
+    let totalConfirmed = 0,totalActive = 0,totalRecovered = 0,totalDeceased = 0;
+
+  
+      const totalObj = data['total'];
+
+      const confirm = totalObj.confirmed;
+
+      const active = totalObj.tested;
+
+      const recovered = totalObj.recovered;
+
+      const deceased = totalObj.deceased;
+
+      totalConfirmed+=confirm;
+      totalActive+=active;
+      totalRecovered+=recovered;
+      totalDeceased+=deceased;
+
+      const arr = [];
+
+      for(let obj in data['districts']) {
+        const newObj = {
+          tag : obj,
+          name : obj,
+          data :data['districts'][obj]
+      }
+        arr.push(newObj);
+
+      }
+
+      setTimeout(() => {
+
+        this.setState({isDataArrived:true,totalConfirmed,totalActive,totalRecovered,totalDeceased,allData : arr});
+  
+      },800);
+    }
+getCards = () => {
+
+  const { totalConfirmed , totalActive , totalRecovered , totalDeceased , isDataArrived } = this.state;
+   
+   return ( <div className = "st789StateContainer">
+
+      <Card isDataArrived = {isDataArrived} title = "Confirmed" data = {totalConfirmed} color = "red" iconName = "check-circle"/>
+
+      <Card isDataArrived = {isDataArrived} title = "Tested" data = {totalActive} color = "blue" iconName = "thermometer"/>
+
+      <Card isDataArrived = {isDataArrived} title = "Recovered" data = {totalRecovered} color ="green" iconName = "battery-full"/>
+
+      <Card isDataArrived = {isDataArrived} title = "Deceased" data = {totalDeceased} color="default" iconName = "battery-empty"/>
+
+    </div>
+
+   );
+
+  }
+
+  getTable = () => {
+
+    const { allData , isDataArrived } = this.state;
+
+    return <Table sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
+
+  }
+
+  sortData = (event) => {
+
+    const tag = event.target.getAttribute('tag');
+
+    console.log(tag);
+
+    const { allData } = this.state;
+
+    console.log(allData);
+
+    const data = SORT_DATA(tag,allData);
+
+    this.setState({allData:data});
+
+  }
+
 
 }
 

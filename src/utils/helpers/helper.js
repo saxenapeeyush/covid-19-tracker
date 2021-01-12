@@ -4,6 +4,8 @@ export const addingCommasToNumbers = (number) => {
 
 export const convertingNumber = (value) => {
 
+  if(!convertingNumber) return 0;
+
   if (value >= 10000000) {
 
     value = (value / 10000000).toFixed(1) + 'Cr';

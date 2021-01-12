@@ -1,8 +1,9 @@
 import React from 'react';
-import { BrowserRouter , Route  } from 'react-router-dom';
+import { BrowserRouter , Route , Switch  } from 'react-router-dom';
 
 import Home from './views/Home';
 import States from './views/States';
+import Error from './common/Error';
 
 import './App.css';
 
@@ -13,9 +14,15 @@ function App() {
 
       <BrowserRouter>
 
+        <Switch>
+
         <Route path = "/" exact component = {Home}/>
 
-        <Route path = "/state/:stateName" component = {States}/>
+        <Route exact path = "/state/:stateName" component = {States}/>
+
+        <Route component = {Error}/>
+
+        </Switch>
 
       </BrowserRouter>
 

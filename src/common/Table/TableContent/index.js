@@ -14,7 +14,7 @@ const TableContent = (props) =>  {
 
   const { total , meta } = data;
 
-  const { population } = meta;
+  const population = meta?.population;
 
   const { confirmed , recovered , deceased , tested } = total;
 
@@ -25,56 +25,64 @@ const TableContent = (props) =>  {
   let toShowTested = convertingNumber(tested); 
   let toShowPopulation = convertingNumber(population);
 
-  if(!toShowConfirmed.toString().includes("L") && !toShowConfirmed.toString().includes("Cr")){
+
+  if(toShowConfirmed && !toShowConfirmed.toString().includes("L") && !toShowConfirmed.toString().includes("Cr")){
     toShowConfirmed = addingCommasToNumbers(toShowConfirmed);
   }
 
-  if(!toShowRecovered.toString().includes("L") && !toShowRecovered.toString().includes("Cr")){
+  if(toShowRecovered && !toShowRecovered.toString().includes("L") && !toShowRecovered.toString().includes("Cr")){
     toShowRecovered = addingCommasToNumbers(toShowRecovered);
   }
 
-  if(!toShowDeceased.toString().includes("L") && !toShowDeceased.toString().includes("Cr")){
+  if(toShowDeceased && !toShowDeceased.toString().includes("L") && !toShowDeceased.toString().includes("Cr")){
     toShowDeceased = addingCommasToNumbers(toShowDeceased);
   }
 
-  if(!toShowTested.toString().includes("L") && !toShowTested.toString().includes("Cr")){
+  if(toShowTested && !toShowTested.toString().includes("L") && !toShowTested.toString().includes("Cr")){
     toShowTested = addingCommasToNumbers(toShowTested);
   }
 
-  if(!toShowPopulation.toString().includes("L") && !toShowPopulation.toString().includes("Cr")){
+  if(toShowPopulation && !toShowPopulation.toString().includes("L") && !toShowPopulation.toString().includes("Cr")){
     toShowPopulation = addingCommasToNumbers(toShowPopulation);
   }
   
+  let test  = isNaN(tested/population) ? 0 : (tested/population);
 
-  let testRatio = ((tested/population)*100).toFixed(1);
-  let recoveryRatio = ((recovered/population)*100).toFixed(1);
-  let caseFatelityRatio = ((deceased/population)*100).toFixed(1);
+  let recovery = isNaN(recovered/population) ? 0 : (recovered/population);
 
-  const newTo = { 
-    pathname: `/state/${tag}`, 
-    param1: data['districts'] 
+  let caseFatelity = isNaN(deceased/population) ? 0 : (deceased/population);
+
+  let testRatio = (test*100).toFixed(1);
+  let recoveryRatio = (recovery*100).toFixed(1);
+  let caseFatelityRatio = (caseFatelity*100).toFixed(1);
+
+  // const newCase  = COUNTRY_CODE[tag];
+  // console.log(newCase);
+
+  const newTo = {
+    pathname: (tag.length < 3) ? `/state/${tag}` : "/", 
   };
 
   return (
     <Link to = {newTo} className = "tc903TableContentContainer">
 
-      <div className = "tc903TableContent">{COUNTRY_CODE[tag]}</div>
+      <div className = "tc903TableContent">{tag.length < 3 ? COUNTRY_CODE[tag] : tag}</div>
 
-      <div>{toShowConfirmed}</div>
+      <div>{toShowConfirmed ? toShowConfirmed : 0}</div>
 
-      <div>{toShowRecovered}</div>
+      <div>{toShowRecovered ? toShowConfirmed : 0}</div>
 
-      <div>{toShowDeceased}</div>
+      <div>{toShowDeceased ? toShowDeceased : 0}</div>
 
-      <div>{toShowTested}</div>
+      <div>{toShowTested ? toShowTested : 0}</div>
 
-      <div>{recoveryRatio}%</div>
+      <div>{recoveryRatio ? recoveryRatio : 0}%</div>
 
-      <div>{caseFatelityRatio}%</div>
+      <div>{caseFatelityRatio ? caseFatelityRatio : 0}%</div>
 
-      <div>{testRatio}%</div>
+      <div>{testRatio ? testRatio : 0}%</div>
 
-      <div>{toShowPopulation}</div>
+      <div>{toShowPopulation ? toShowPopulation : "Unknown"}</div>
 
     </Link>
   );

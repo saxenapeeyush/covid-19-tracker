@@ -1,9 +1,13 @@
 import React from 'react';
 
 import { Instance } from '../../utils/configs/axios';
+import { COUNTRY_CODE } from '../../utils/configs/country';
+import { SORT_DATA } from '../../utils/helpers/sorting';
 
 import Card from '../../common/Card';
 import Table from '../../common/Table';
+import Input from '../../ui/Input';
+import Box from '../../common/Box';
 
 import './home.css';
 
@@ -19,7 +23,9 @@ class Home extends React.Component {
       totalRecovered: 0,
       totalDeceased : 0 ,
       isDataArrived : false,
-      allData : '',
+      allData : [],
+      boxData :[],
+      inputBoxValue : '',
     };
 
   }
@@ -35,6 +41,8 @@ class Home extends React.Component {
     return (
 
       <div>
+
+        {this.getSearchBox()}
 
         {this.getCards()}
 
@@ -72,11 +80,12 @@ class Home extends React.Component {
       for(let obj in data) {
         const newObj = {
           tag : obj,
+          name : COUNTRY_CODE[obj],
           data :data[obj]
       }
+
     arr.push(newObj);
   } 
-
 
     setTimeout(() => {
 
@@ -118,116 +127,104 @@ class Home extends React.Component {
 
     const tag = event.target.getAttribute('tag');
 
+    if(!tag) return;
 
-    let tagLine = '';
+    const { allData } = this.state;
 
-    if(tag === 'cn' || tag === 'rc' || tag === 'dc' || tag === 'te') {
-      switch(tag) {
-        case 'cn' : tagLine = 'confirmed';
-                    break;
-        case 'rc' : tagLine = "recovered";
-                    break;
-        case 'dc' : tagLine = 'deceased';
-                    break;
-        case 'te' : tagLine = 'tested';
-                    break;
-        default : tagLine = ''
-      }
-      this.sortByConRecDecTes(tagLine);
+    const data = SORT_DATA(tag,allData);
+
+    this.setState({allData:data});
+
+  }
+
+  getSearchBox = () => {
+
+    const { inputBoxValue , boxData } = this.state;
+
+    return (
+      <div className = "ho378HomeInputBoxContainer">
+
+        {/* <SingleDiv data = "Search your state"/> */}
+
+        <Input label = "Search you state" value = {inputBoxValue} type = "text" placeholder = "Maharasthra,Delhi..." onChange = {this.searchInput}/>
+
+        <Box data = {boxData}/>
+
+      </div> 
+    );
+  }
+
+
+  normalFunction = (event) => {
+
+    const target = event.target.value;
+
+    console.log(target);
+
+    this.searchBoxHandler(target);
+
+    // this.setState({inputBoxValue : target});
+
+
+  }
+
+  betterFunction = this.debounceSearchBoxHandler(this.normalFunction,300);
+
+  searchInput = (event) => {
+
+    const target = event.target.value;
+
+    // this.debounceSearchBoxHandler(this.searchBoxHandler,300);
+
+    this.setState({inputBoxValue : target});
+
+    this.searchBoxHandler(target);
+
+
+  }
+
+  debounceSearchBoxHandler(normalFn,delay) {
+
+    let timer = 0;
+
+    return function(...args) {
+
+      let myThis = this;
+
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+
+        normalFn.apply(myThis,args);
+
+      },delay);
+    }
+
+  }
+
+  searchBoxHandler = (target) => {
+
+    if(target.length === 0) {
+
+      this.setState({boxData :[]});
+
+      return;
+
+    }
+
+    const { allData }  = this.state;
+
+    const newData = [...allData];
+
+    const updatedData = newData.filter((curObj) => {
+
+      return (curObj['name'].includes(target));
+
+    });
     
-    }
-    else if(tag === 'rr' || tag === 'cfr' || tag === 'tpr') {
 
-      switch(tag) {
+    this.setState({boxData : updatedData,inputBoxValue:target});
 
-        case 'rr' : tagLine = 'recovered';
-                    break;
-
-        case 'cfr' : tagLine = "deceased";
-                    break;
-
-        case 'tpr' : tagLine = 'tested';
-                    break;
-
-        default : tagLine = '';
-
-      }
-      this.sortByConRecDecTesRatio(tagLine);
-
-    }
-
-    else if(tag === 'pop') {
-
-
-      this.sortByPopulation('population');
-
-    }
-    else if(tag === 'st') {
-
-      this.sortByStateName();
-
-    }
-
-  }
-
-  sortByConRecDecTes = (tagLine) => {
-
-    const { allData }  = this.state;
-    const newData = [...allData];
-
-    newData.sort((obj1,obj2) => {
-
-      return obj1['data']['total'][tagLine] - obj2['data']['total'][tagLine];
-
-    });
-
-      this.setState({allData : newData});
-
-  }
-
-  sortByConRecDecTesRatio = (tagLine) => {
-
-    const { allData }  = this.state;
-    const newData = [...allData];
-
-    newData.sort((obj1,obj2) => {
-
-      return obj1['data']['total'][tagLine] / obj1['data']['meta']['population'] - obj2['data']['total'][tagLine] / obj2['data']['meta']['population'];
-
-    });
-
-      this.setState({allData : newData});
-
-  }
-
-  sortByPopulation = (tagLine) => {
-
-    const { allData }  = this.state;
-    const newData = [...allData];
-
-
-    newData.sort((obj1,obj2) => {
-
-      return obj1['data']['meta'][tagLine] - obj2['data']['meta'][tagLine];
-
-    });
-
-    this.setState({allData : newData});
-
-  }
-
-  sortByStateName = () => {
-
-    const { allData }  = this.state;
-    const newData = [...allData];
-
-    newData.sort((obj1,obj2) => {
-
-      return obj1['tag'].localeCompare(obj2['tag']);
-
-    });
-
-    this.setState({allData : newData});
 
   }
 
