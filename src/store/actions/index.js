@@ -1,0 +1,2 @@
+import fetchTableData from './fetchTableData';
+

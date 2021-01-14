@@ -1,10 +1,19 @@
 .sd594SingleDivContainer {
+
   display: flex;
+  
   justify-content: center;
+  
   align-items: center;
+  
   font-size:0.8em;
-  color:#6c757d;
+  
+  color:var(--inputBoxContainerLabelColor);
+  
   margin:1em;
+  
   font-weight: bold;
+  
   letter-spacing: 0.5px;
+
 }

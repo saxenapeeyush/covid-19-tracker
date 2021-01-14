@@ -8,41 +8,82 @@ import Card from '../../common/Card';
 import Table from '../../common/Table';
 import Input from '../../ui/Input';
 import Box from '../../common/Box';
+import Notification from '../../common/Notification';
+import DateTime from '../../common/DateTime';
 
 import './home.css';
+import { ICONS } from '../../utils/configs/icons';
 
 class Home extends React.Component {
 
   constructor(props) {
 
+
     super(props);
+
+    this.debounce = null;
 
     this.state = {
       totalConfirmed : 0,
       totalActive : 0,
       totalRecovered: 0,
-      totalDeceased : 0 ,
+      totalDeceased : 0,
       isDataArrived : false,
       allData : [],
       boxData :[],
       inputBoxValue : '',
+      notificationData : [],
+      toShowNotification : false,
+      currentDate: new Date()
     };
 
   }
 
   componentDidMount() {
 
-    this.getData();
+    this.getTableData();
+
+    this.getNotificationData();
+
+    this.timeInterval = setInterval(()=> {
+
+      this.setState({currentDate : new Date()});
+
+    },1000);
+
 
   }
 
+  componentWillUnmount() {
+
+    clearInterval(this.timeInterval);
+
+    this.setState = (state,callback)=>{ return; };
+}
+
   render() {
+
+    const { toShowNotification , currentDate } = this.state;
 
     return (
 
       <div>
 
         {this.getSearchBox()}
+
+        <div>
+
+          <div className = "ho378DateNotifContainer">
+
+            <DateTime currentDate = {currentDate}/>
+
+            <i onClick = {this.showNotification} className = {`ho378HomeBellIconNotif ${toShowNotification ? ICONS['bell-slash'] : ICONS.bell}`}></i>
+          
+          </div>
+
+        </div>
+
+        {this.getNotificationBar()}
 
         {this.getCards()}
 
@@ -54,7 +95,26 @@ class Home extends React.Component {
 
   }
 
-  getData = async () => {
+  showNotification = () => {
+
+    const { toShowNotification } = this.state;
+
+    this.setState({toShowNotification : !toShowNotification});
+
+  }
+
+  getNotificationData = async () => {
+
+    const allData = await Instance.get('/updatelog/log.json');
+
+    const data = allData?.data;
+
+    this.setState({notificationData : data});
+
+  }
+
+
+  getTableData = async () => {
 
     const allData = await Instance.get('/v4/min/data.min.json');
 
@@ -85,6 +145,7 @@ class Home extends React.Component {
       }
 
     arr.push(newObj);
+    // console.log(arr);
   } 
 
     setTimeout(() => {
@@ -123,6 +184,16 @@ class Home extends React.Component {
 
   }
 
+  getNotificationBar = () => {
+
+    const { notificationData , toShowNotification } = this.state;
+
+    return (
+      <div className = "ho378NotifContainer"><Notification toShow = {toShowNotification} data = {notificationData}/></div>
+    );
+
+  }
+
   sortData = (event) => {
 
     const tag = event.target.getAttribute('tag');
@@ -155,11 +226,12 @@ class Home extends React.Component {
   }
 
 
+
   normalFunction = (event) => {
 
     const target = event.target.value;
 
-    console.log(target);
+    // console.log(target);
 
     this.searchBoxHandler(target);
 
@@ -172,13 +244,21 @@ class Home extends React.Component {
 
   searchInput = (event) => {
 
+    clearTimeout(this.debounce);
+
     const target = event.target.value;
 
     // this.debounceSearchBoxHandler(this.searchBoxHandler,300);
 
     this.setState({inputBoxValue : target});
 
-    this.searchBoxHandler(target);
+    this.debounce = setTimeout(() => {
+
+        this.searchBoxHandler(target);
+
+    },300);
+
+    // this.searchBoxHandler(target);
 
 
   }

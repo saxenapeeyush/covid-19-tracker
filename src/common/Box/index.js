@@ -15,6 +15,8 @@ const Box = (props) => {
       <div className = "bo378BoxInnerContainer">
       {data.map(({name,tag},idx) => {
 
+        if(idx > 4) return null;
+
          return <div className = "bo385BoxContent" key = {idx}><Link to = {`/state/${tag}`}>{name} <span className = "bo385BoxTag">{tag} <i className = {ICONS['arrow-circle-right']}></i></span></Link></div>
 
        })}

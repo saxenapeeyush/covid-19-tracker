@@ -138,11 +138,10 @@ getCards = () => {
 
     const tag = event.target.getAttribute('tag');
 
-    console.log(tag);
-
+    if(!tag) return;
+    
     const { allData } = this.state;
 
-    console.log(allData);
 
     const data = SORT_DATA(tag,allData);
 

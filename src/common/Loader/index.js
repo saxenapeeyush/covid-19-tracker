@@ -16,4 +16,4 @@ const Loader = (props) => {
 
 }
 
-export default Loader;
+export default React.memo(Loader);

@@ -1,0 +1,33 @@
+.nc671NotifContTimeDiff {
+
+  color:var(--notificationAboutTagLineColor);
+
+  font-size:12px;
+
+  font-weight: bold;
+
+}
+
+.nc671NotifContDataContainer {
+
+  background : var(--notificationContentBackgroundColor);
+
+  margin:1em 0em;
+
+  padding: 0.5em 0.5em;
+
+}
+
+.nc671NotifContData {
+
+  margin:3px 0px;
+
+  color:var(--inputBoxContainerLabelColor);
+
+  font-size:13px;
+  
+  font-weight:bold;
+
+  letter-spacing: 0.5px;
+
+}

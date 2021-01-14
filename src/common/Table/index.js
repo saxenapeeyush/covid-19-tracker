@@ -1,5 +1,6 @@
 import React from 'react';
-import { useInView } from 'react-intersection-observer';
+import FlipMove from 'react-flip-move';
+import { connect } from 'react-redux';
 
 import { TABLE } from '../../utils/configs/table';
 
@@ -11,19 +12,12 @@ import './table.css';
 
 const Table = (props) => {
 
-  const { ref, inView, entry } = useInView({
-    /* Optional options */
-    root:null,
-    threshold: 0,
-    rootMargin: '0px',
-  });
-
   const { data , isDataArrived , sortDataOnCheck } = props;
 
   return (
 
     <div>
-      <div onClick = {sortDataOnCheck} ref ={ref} className = {`tab760TableContainer ${entry && entry.isIntersecting ? "" : ""}`}>
+      <div onClick = {sortDataOnCheck} className = {`tab760TableContainer`}>
       {TABLE.map(({name,tag},idx) => {
         
         return <TableTag tag = {tag} name = {name} key = {idx}/>
@@ -33,15 +27,16 @@ const Table = (props) => {
 
     </div>
 
-    {!isDataArrived ? <Loader/>: (<div>
+    {!isDataArrived ? <Loader/>: (<FlipMove>
 
       {data.map((curCountry,idx) => {
+        
+        // console.log(curCountry);
 
-        return <TableContent object = {curCountry} key = {idx}/>
+        return <TableContent object = {curCountry} key = {curCountry['tag']}/>
         
       })}
-
-    </div>)}
+    </FlipMove>)}
     </div>
 
   );

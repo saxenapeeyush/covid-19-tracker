@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import  { COUNTRY_CODE } from '../../../utils/configs/country';
@@ -6,7 +6,7 @@ import { addingCommasToNumbers ,convertingNumber } from '../../../utils/helpers/
 
 import './tableContent.css';
 
-const TableContent = (props) =>  {
+const TableContent = forwardRef((props,ref) =>  {
 
   const { object } = props;
 
@@ -60,11 +60,13 @@ const TableContent = (props) =>  {
   // console.log(newCase);
 
   const newTo = {
+
     pathname: (tag.length < 3) ? `/state/${tag}` : "/", 
+
   };
 
   return (
-    <Link to = {newTo} className = "tc903TableContentContainer">
+    <div ref ={ref}><Link to = {newTo} className = "tc903TableContentContainer">
 
       <div className = "tc903TableContent">{tag.length < 3 ? COUNTRY_CODE[tag] : tag}</div>
 
@@ -85,8 +87,9 @@ const TableContent = (props) =>  {
       <div>{toShowPopulation ? toShowPopulation : "Unknown"}</div>
 
     </Link>
+    </div>
   );
 
-}
+})
 
 export default TableContent;

@@ -5,5 +5,7 @@ export const ICONS = {
   'battery-empty':"fas fa-battery-empty",
   'spinner':"fas fa-spinner",
   'search' :"fas fa-search",
-  'arrow-circle-right' : "fas fa-arrow-circle-right"
+  'arrow-circle-right' : "fas fa-arrow-circle-right",
+  "bell" :"far fa-bell",
+  "bell-slash" :"far fa-bell-slash"
 }

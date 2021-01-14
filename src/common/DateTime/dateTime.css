@@ -1,0 +1,11 @@
+.dt862CurrentDateTime {
+
+  color:var(--inputBoxContainerLabelColor);
+
+  font-weight:bold;
+
+  letter-spacing: 0.5px;
+
+  font-size:12px;
+
+}

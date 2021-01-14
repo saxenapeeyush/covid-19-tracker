@@ -1,13 +1,55 @@
 .ho378CardContainer {
+
   display: flex;
+  
   flex-wrap: wrap;
+  
   justify-content: space-around;
+
 }
 
 .ho378HomeInputBoxContainer {
+  
   position: relative;
+
 }
 
 .ho378HomeBox {
+
   position: absolute;
+
+}
+
+.ho378NotifContainer,.ho378DateNotifContainer {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.ho378DateNotifContainer {
+
+  margin: 2em 0em;
+
+}
+
+.ho378HomeBellIconNotif {
+
+  transition-duration: 0.5s;
+
+  cursor: pointer;
+
+  color: var(--notificationAboutTagLineColor);
+
+  margin:0em 1em;
+
+}
+
+.ho378HomeBellIconNotif:hover {
+  
+  color: var(--notificationIconOnHoverColor);
+
 }

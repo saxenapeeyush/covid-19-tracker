@@ -1,9 +1,14 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 const Error = () => {
 
   return (
-    <div> Error Page</div>
+    <div>
+
+      <Redirect to = "/"></Redirect>
+
+    </div>
   );
 
 }
