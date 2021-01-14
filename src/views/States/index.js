@@ -58,7 +58,6 @@ class States extends React.Component {
 
     const { stateName } = this.props.match.params;
 
-
     const allData = await Instance.get('/v4/min/data.min.json');
 
     const newData = allData?.data;
