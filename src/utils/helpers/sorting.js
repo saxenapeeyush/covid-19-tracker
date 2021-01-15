@@ -1,4 +1,4 @@
-const sortByConRecDecTes = (tagLine,allData) => {
+const sortByConRecDecTes = (tagLine,allData,isAscending) => {
 
   const newData = [...allData];
 
@@ -11,7 +11,7 @@ const sortByConRecDecTes = (tagLine,allData) => {
     if(!first) first = 0;
     if(!second) second = 0;
 
-    return first - second;
+    return isAscending ? first - second : second - first;
 
   });
 
@@ -19,7 +19,7 @@ const sortByConRecDecTes = (tagLine,allData) => {
 
 }
 
-const sortByConRecDecTesRatio = (tagLine,allData) => {
+const sortByConRecDecTesRatio = (tagLine,allData,isAscending) => {
 
   const newData = [...allData];
 
@@ -46,7 +46,7 @@ const sortByConRecDecTesRatio = (tagLine,allData) => {
     const secondType = isNaN(second/secondPopulation)?0:(second/secondPopulation);
 
 
-    return firstType - secondType;
+    return isAscending ? firstType - secondType : secondType - firstType;
 
   });
 
@@ -55,7 +55,7 @@ const sortByConRecDecTesRatio = (tagLine,allData) => {
 }
 
 
-const sortByPopulation = (tagLine,allData) => {
+const sortByPopulation = (tagLine,allData,isAscending) => {
 
   const newData = [...allData];
 
@@ -69,7 +69,7 @@ const sortByPopulation = (tagLine,allData) => {
     if(!first) first = 0;
     if(!second) second = 0;
 
-    return first - second;
+    return isAscending ? first - second : second - first;
 
   });
 
@@ -77,13 +77,13 @@ const sortByPopulation = (tagLine,allData) => {
 
 }
 
-const sortByStateName = (allData) => {
+const sortByStateName = (allData,isAscending) => {
 
   const newData = [...allData];
 
   newData.sort((obj1,obj2) => {
 
-    return obj1['name'].localeCompare(obj2['name']);
+    return isAscending ? obj1['name'].localeCompare(obj2['name']) : obj2['name'].localeCompare(obj1['name']);
 
   });
 
@@ -91,7 +91,7 @@ const sortByStateName = (allData) => {
 
 }
 
-export const SORT_DATA = (tag,allData) => {
+export const SORT_DATA = (tag,allData,isAscending) => {
 
   let tagLine = '';
 
@@ -107,7 +107,7 @@ export const SORT_DATA = (tag,allData) => {
                   break;
       default : tagLine = ''
     }
-    return sortByConRecDecTes(tagLine,allData);
+    return sortByConRecDecTes(tagLine,allData,isAscending);
   
   }
   else if(tag === 'rr' || tag === 'cfr' || tag === 'tpr') {
@@ -126,19 +126,19 @@ export const SORT_DATA = (tag,allData) => {
       default : tagLine = '';
 
     }
-    return sortByConRecDecTesRatio(tagLine,allData);
+    return sortByConRecDecTesRatio(tagLine,allData,isAscending);
 
   }
 
   else if(tag === 'pop') {
 
 
-    return sortByPopulation('population',allData);
+    return sortByPopulation('population',allData,isAscending);
 
   }
   else if(tag === 'st') {
 
-    return sortByStateName(allData);
+    return sortByStateName(allData,isAscending);
 
   }
 

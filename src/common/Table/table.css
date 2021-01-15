@@ -29,3 +29,11 @@
   
   /* width:100%; */
 }
+
+.tab760TableContStrongSelect {
+
+  color: var(--pageBlueColorTestedBox);
+  background-color: var(--pageBlueColorTestedBoxOnHover);
+
+
+}

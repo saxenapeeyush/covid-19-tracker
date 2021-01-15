@@ -12,18 +12,21 @@ import './table.css';
 
 const Table = (props) => {
 
-  const { data , isDataArrived , sortDataOnCheck } = props;
+  const { data , isDataArrived , sortDataOnCheck , isSortedData , isDistrict } = props;
+
+  const  { isAscending , curState } = isSortedData;
 
   return (
 
     <div>
       <div onClick = {sortDataOnCheck} className = {`tab760TableContainer`}>
       {TABLE.map(({name,tag},idx) => {
+
+        const newName = isDistrict && tag ==='st' ? "District" : name;
         
-        return <TableTag tag = {tag} name = {name} key = {idx}/>
+        return <TableTag isAscending = {isAscending} curState = {curState} tag = {tag} name = {newName} key = {idx}/>
 
       })}
-      
 
     </div>
 

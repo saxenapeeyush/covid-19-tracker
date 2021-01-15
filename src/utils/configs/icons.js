@@ -7,5 +7,7 @@ export const ICONS = {
   'search' :"fas fa-search",
   'arrow-circle-right' : "fas fa-arrow-circle-right",
   "bell" :"far fa-bell",
-  "bell-slash" :"far fa-bell-slash"
+  "bell-slash" :"far fa-bell-slash",
+  "sort-up":"fas fa-sort-up",
+  "sort-down" :"fas fa-sort-down"
 }

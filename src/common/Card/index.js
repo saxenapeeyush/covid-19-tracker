@@ -17,7 +17,6 @@ const Card  = (props) => {
   return (
 
     <div className = {`car890CardInnerContainer car489${color}`}>
-
       <div className = "car890Title">{title}</div>
       <div>
         <i className = {`${ICONS[iconName]}`}></i>

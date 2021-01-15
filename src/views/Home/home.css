@@ -20,7 +20,20 @@
 
 }
 
-.ho378NotifContainer,.ho378DateNotifContainer {
+.ho378NotifContainer {
+  
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  position: absolute;
+
+  width: 100%;
+}
+
+.ho378DateNotifContainer {
 
   display: flex;
 
@@ -33,6 +46,7 @@
 .ho378DateNotifContainer {
 
   margin: 2em 0em;
+  
 
 }
 

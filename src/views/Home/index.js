@@ -34,7 +34,11 @@ class Home extends React.Component {
       inputBoxValue : '',
       notificationData : [],
       toShowNotification : false,
-      currentDate: new Date()
+      currentDate: new Date(),
+      isSorted : {
+        curState : 'st',
+        isAscending : true
+      }
     };
 
   }
@@ -145,7 +149,7 @@ class Home extends React.Component {
       }
 
     arr.push(newObj);
-    // console.log(arr);
+
   } 
 
     setTimeout(() => {
@@ -178,9 +182,9 @@ class Home extends React.Component {
 
   getTable = () => {
 
-    const { allData , isDataArrived } = this.state;
+    const { allData , isDataArrived , isSorted } = this.state;
 
-    return <Table sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
+    return <Table isDistrict = {false} isSortedData = {isSorted} sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
 
   }
 
@@ -196,15 +200,31 @@ class Home extends React.Component {
 
   sortData = (event) => {
 
+    const { isSorted , allData } = this.state;
+
+    const newSortedObj = {...isSorted};
+
     const tag = event.target.getAttribute('tag');
 
     if(!tag) return;
 
-    const { allData } = this.state;
+    if(newSortedObj.curState === tag) {
 
-    const data = SORT_DATA(tag,allData);
+      const data = SORT_DATA(tag,allData,!newSortedObj.isAscending);
 
-    this.setState({allData:data});
+      newSortedObj.isAscending = !newSortedObj.isAscending;
+  
+      this.setState({allData:data,isSorted : newSortedObj});
+
+    }else{
+
+      const data = SORT_DATA(tag,allData,newSortedObj.isAscending);
+
+      newSortedObj.curState = tag;
+
+      this.setState({allData:data,isSorted : newSortedObj});
+
+    }
 
   }
 
@@ -215,11 +235,9 @@ class Home extends React.Component {
     return (
       <div className = "ho378HomeInputBoxContainer">
 
-        {/* <SingleDiv data = "Search your state"/> */}
+        <Input iconName = "search" label = "Search your state" value = {inputBoxValue} type = "text" placeholder = "Search your state" onChange = {this.searchInput}/>
 
-        <Input label = "Search you state" value = {inputBoxValue} type = "text" placeholder = "Maharasthra,Delhi..." onChange = {this.searchInput}/>
-
-        <Box data = {boxData}/>
+        <Box value = {inputBoxValue} data = {boxData}/>
 
       </div> 
     );

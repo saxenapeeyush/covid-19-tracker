@@ -23,6 +23,8 @@
   display: flex;
   
   justify-content: center;
+
+  position:relative;
   
   align-items: center;
   
@@ -32,5 +34,25 @@
 .tabt982TableTag:hover {
 
   background:var(--tableTagContainerTagOnHoverColor);
+
+}
+
+.tabt982TableIconAsc {
+
+  position: absolute;
+
+  right : 5px;
+
+  top:5px;
+
+}
+
+.tabt982TableIconDesc {
+
+  position: absolute;
+
+  right : 5px;
+
+  bottom:  5px;
 
 }

@@ -7,7 +7,7 @@ import './box.css';
 
 const Box = (props) => {
 
-  const { data } = props;
+  const { data , value } = props;
 
   
   return (
@@ -17,7 +17,15 @@ const Box = (props) => {
 
         if(idx > 4) return null;
 
-         return <div className = "bo385BoxContent" key = {idx}><Link to = {`/state/${tag}`}>{name} <span className = "bo385BoxTag">{tag} <i className = {ICONS['arrow-circle-right']}></i></span></Link></div>
+        const firstIndex = name.indexOf(value);
+
+        const first = name.substring(0,firstIndex);
+
+        const second = name.substr(firstIndex,value.length);
+
+        const third = name.substring(first.length + value.length);
+
+         return <div className = "bo385BoxContent" key = {idx}><Link to = {`/state/${tag}`}><span>{first}<span className="bo378BoxInnerStrong">{second}</span>{third}</span> <span className = "bo385BoxTag">{tag} <i className = {ICONS['arrow-circle-right']}></i></span></Link></div>
 
        })}
        </div>

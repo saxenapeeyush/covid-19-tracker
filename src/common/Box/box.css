@@ -60,6 +60,8 @@
 
 .bo378BoxInnerContainer {
 
+  border: 1px solid var(--defaultOnHoverTableContentColor);
+
   text-align: center;
 
   background : var(--pageBackgroundColor);
@@ -69,6 +71,8 @@
 }
 
 .bo385BoxContainer {
+
+  margin: -1.68em 0em;
 
   display:flex;
 
@@ -80,4 +84,11 @@
 
   position: absolute;
   
+}
+
+.bo378BoxInnerStrong {
+
+  color : var(--searchDropDownTagColor);
+  text-transform: unset;
+
 }

@@ -20,7 +20,12 @@ class States extends React.Component {
       totalDeceased : 0 ,
       isDataArrived : false,
       shouldRedirectError :false,
-      allData : []};
+      allData : [],
+      isSorted : {
+        curState : 'st',
+        isAscending : true
+      }
+    };
 
   }
 
@@ -127,24 +132,39 @@ getCards = () => {
 
   getTable = () => {
 
-    const { allData , isDataArrived } = this.state;
+    const { allData , isDataArrived , isSorted } = this.state;
 
-    return <Table sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
+    return <Table isDistrict = {true} isSortedData = {isSorted} sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
 
   }
 
   sortData = (event) => {
 
+    const { isSorted , allData } = this.state;
+
+    const newSortedObj = {...isSorted};
+
     const tag = event.target.getAttribute('tag');
 
     if(!tag) return;
-    
-    const { allData } = this.state;
 
+    if(newSortedObj.curState === tag) {
 
-    const data = SORT_DATA(tag,allData);
+      const data = SORT_DATA(tag,allData,!newSortedObj.isAscending);
 
-    this.setState({allData:data});
+      newSortedObj.isAscending = !newSortedObj.isAscending;
+  
+      this.setState({allData:data,isSorted : newSortedObj});
+
+    }else{
+
+      const data = SORT_DATA(tag,allData,newSortedObj.isAscending);
+
+      newSortedObj.curState = tag;
+
+      this.setState({allData:data,isSorted : newSortedObj});
+
+    }
 
   }
 

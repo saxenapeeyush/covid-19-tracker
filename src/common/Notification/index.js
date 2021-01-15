@@ -2,6 +2,8 @@ import React from 'react';
 
 import NotificationBar from './NotificationBar';
 
+import './notification.css';
+
 const Notification = (props) => {
 
   const myMap = new Map();
@@ -72,7 +74,7 @@ const Notification = (props) => {
 
     if(toShow) {
 
-    return <div>
+    return <div className = "notif587NotifInnerContainerOnOpen">
 
       {newArr1.map((curObject,idx) => {
 
