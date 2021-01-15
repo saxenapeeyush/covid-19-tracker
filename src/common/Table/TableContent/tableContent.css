@@ -64,3 +64,27 @@
   text-transform: capitalize;
 
 }
+
+.tc903TableContentConfirmedMore {
+
+
+  color:var(--pageRedColorConfirmBox);
+
+}
+
+.tc903TableContentRecoveredMore {
+
+  color:var(--pageGreenColorRecoveredBox);
+
+}
+
+.tc903TableContentDeceasedMore {
+
+  color : var(--notificationAboutTagLineColor);
+
+}
+
+.tc903TableContentTestedMore {
+
+  color : var(--pageBlueColorTestedBox);
+}

@@ -49,18 +49,18 @@ class Home extends React.Component {
 
     this.getNotificationData();
 
-    this.timeInterval = setInterval(()=> {
+    // this.timeInterval = setInterval(()=> {
 
-      this.setState({currentDate : new Date()});
+    //   this.setState({currentDate : new Date()});
 
-    },1000);
+    // },1000);
 
 
   }
 
   componentWillUnmount() {
 
-    clearInterval(this.timeInterval);
+    // clearInterval(this.timeInterval);
 
     this.setState = (state,callback)=>{ return; };
 }
@@ -152,11 +152,11 @@ class Home extends React.Component {
 
   } 
 
-    setTimeout(() => {
+    // setTimeout(() => {
 
       this.setState({isDataArrived:true,totalConfirmed,totalActive,totalRecovered,totalDeceased,allData : arr});
 
-    },800);
+    // },800);
 
   }
 

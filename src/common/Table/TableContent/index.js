@@ -12,7 +12,7 @@ const TableContent = forwardRef((props,ref) =>  {
 
   const { tag , data } = object;
 
-  const { total , meta } = data;
+  const { total , meta , delta } = data;
 
   const population = meta?.population;
 
@@ -56,9 +56,6 @@ const TableContent = forwardRef((props,ref) =>  {
   let recoveryRatio = (recovery*100).toFixed(1);
   let caseFatelityRatio = (caseFatelity*100).toFixed(1);
 
-  // const newCase  = COUNTRY_CODE[tag];
-  // console.log(newCase);
-
   const newTo = {
 
     pathname: (tag.length < 3) ? `/state/${tag}` : "/", 
@@ -70,13 +67,17 @@ const TableContent = forwardRef((props,ref) =>  {
 
       <div className = "tc903TableContent">{tag.length < 3 ? COUNTRY_CODE[tag] : tag}</div>
 
-      <div>{toShowConfirmed ? toShowConfirmed : 0}</div>
+      <div>{toShowConfirmed ? toShowConfirmed : 0} 
+      <span className = "tc903TableContentConfirmedMore">{delta ? delta.confirmed:null}</span>
+      </div>
 
-      <div>{toShowRecovered ? toShowConfirmed : 0}</div>
+      <div>{toShowRecovered ? toShowConfirmed : 0} 
+      <span className = "tc903TableContentRecoveredMore">{delta ? delta.recovered:null}</span></div>
 
-      <div>{toShowDeceased ? toShowDeceased : 0}</div>
+      <div>{toShowDeceased ? toShowDeceased : 0} 
+      <span className = "tc903TableContentDeceasedMore">{delta ? delta.deceased:null}</span></div>
 
-      <div>{toShowTested ? toShowTested : 0}</div>
+      <div>{toShowTested ? toShowTested : 0} <span className = "tc903TableContentTestedMore">{delta ? delta.tested:null}</span></div>
 
       <div>{recoveryRatio ? recoveryRatio : 0}%</div>
 

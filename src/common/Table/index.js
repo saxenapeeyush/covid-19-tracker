@@ -1,6 +1,6 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
-import { connect } from 'react-redux';
+// import { connect } from 'react-redux';
 
 import { TABLE } from '../../utils/configs/table';
 
@@ -15,6 +15,8 @@ const Table = (props) => {
   const { data , isDataArrived , sortDataOnCheck , isSortedData , isDistrict } = props;
 
   const  { isAscending , curState } = isSortedData;
+
+  console.log(data);
 
   return (
 
@@ -33,8 +35,6 @@ const Table = (props) => {
     {!isDataArrived ? <Loader/>: (<FlipMove>
 
       {data.map((curCountry,idx) => {
-        
-        // console.log(curCountry);
 
         return <TableContent object = {curCountry} key = {curCountry['tag']}/>
         
