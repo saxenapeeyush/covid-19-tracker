@@ -66,25 +66,48 @@
 }
 
 .tc903TableContentConfirmedMore {
-
+  font-size: 0.8em;
+  position: absolute;
+  right:5px;
+  top:3px;
 
   color:var(--pageRedColorConfirmBox);
 
 }
 
 .tc903TableContentRecoveredMore {
+  font-size: 0.8em;
+  position: absolute;
+
+  right:5px;
+  top:3px;
+
 
   color:var(--pageGreenColorRecoveredBox);
 
 }
 
 .tc903TableContentDeceasedMore {
+  font-size: 0.8em;
+  position: absolute;
+  right:5px;
+  top:3px;
 
   color : var(--notificationAboutTagLineColor);
 
 }
 
 .tc903TableContentTestedMore {
+  font-size: 0.8em;
+
+  position: absolute;
+  right:5px;
+  top:3px;
 
   color : var(--pageBlueColorTestedBox);
+}
+
+.tc903TableContentMainBox {
+  position: relative;
+
 }

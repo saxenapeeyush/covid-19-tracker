@@ -15,6 +15,10 @@ export const convertingNumber = (value) => {
     value = (value / 100000).toFixed(1) + 'L';
   }
 
+  if(value && !value.toString().includes("L") && !value.toString().includes("Cr")){
+    value = addingCommasToNumbers(value);
+  }
+
   return value;
   
 }

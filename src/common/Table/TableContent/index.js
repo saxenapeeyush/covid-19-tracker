@@ -2,6 +2,7 @@ import React, { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 
 import  { COUNTRY_CODE } from '../../../utils/configs/country';
+import { ICONS } from '../../../utils/configs/icons';
 import { addingCommasToNumbers ,convertingNumber } from '../../../utils/helpers/helper';
 
 import './tableContent.css';
@@ -24,27 +25,10 @@ const TableContent = forwardRef((props,ref) =>  {
   let toShowDeceased = convertingNumber(deceased);
   let toShowTested = convertingNumber(tested); 
   let toShowPopulation = convertingNumber(population);
-
-
-  if(toShowConfirmed && !toShowConfirmed.toString().includes("L") && !toShowConfirmed.toString().includes("Cr")){
-    toShowConfirmed = addingCommasToNumbers(toShowConfirmed);
-  }
-
-  if(toShowRecovered && !toShowRecovered.toString().includes("L") && !toShowRecovered.toString().includes("Cr")){
-    toShowRecovered = addingCommasToNumbers(toShowRecovered);
-  }
-
-  if(toShowDeceased && !toShowDeceased.toString().includes("L") && !toShowDeceased.toString().includes("Cr")){
-    toShowDeceased = addingCommasToNumbers(toShowDeceased);
-  }
-
-  if(toShowTested && !toShowTested.toString().includes("L") && !toShowTested.toString().includes("Cr")){
-    toShowTested = addingCommasToNumbers(toShowTested);
-  }
-
-  if(toShowPopulation && !toShowPopulation.toString().includes("L") && !toShowPopulation.toString().includes("Cr")){
-    toShowPopulation = addingCommasToNumbers(toShowPopulation);
-  }
+  let toShowCurTested = convertingNumber(delta?.tested);
+  let toShowCurConfirmed = convertingNumber(delta?.confirmed);
+  let toShowCurRecovered = convertingNumber(delta?.recovered);
+  let toShowCurDeceased = convertingNumber(delta?.deceased);
   
   let test  = isNaN(tested/population) ? 0 : (tested/population);
 
@@ -67,17 +51,25 @@ const TableContent = forwardRef((props,ref) =>  {
 
       <div className = "tc903TableContent">{tag.length < 3 ? COUNTRY_CODE[tag] : tag}</div>
 
-      <div>{toShowConfirmed ? toShowConfirmed : 0} 
-      <span className = "tc903TableContentConfirmedMore">{delta ? delta.confirmed:null}</span>
+      <div className = "tc903TableContentMainBox">{toShowConfirmed ? toShowConfirmed : 0} 
+      <span className = "tc903TableContentConfirmedMore">{delta && delta.confirmed ? <i className = {ICONS['arrow-up']}></i>:null} 
+        {delta && delta.confirmed ? toShowConfirmed : null }
+      </span>
       </div>
 
-      <div>{toShowRecovered ? toShowConfirmed : 0} 
-      <span className = "tc903TableContentRecoveredMore">{delta ? delta.recovered:null}</span></div>
+      <div className = "tc903TableContentMainBox">{toShowRecovered ? toShowRecovered : 0} 
+      <span className = "tc903TableContentRecoveredMore">{delta && delta.recovered ? <i className = {ICONS['arrow-up']}></i>:null}
+      {delta && delta.recovered ? toShowCurRecovered : null }
+      </span></div>
 
-      <div>{toShowDeceased ? toShowDeceased : 0} 
-      <span className = "tc903TableContentDeceasedMore">{delta ? delta.deceased:null}</span></div>
+      <div className = "tc903TableContentMainBox">{toShowDeceased ? toShowDeceased : 0} 
+      <span className = "tc903TableContentDeceasedMore">{delta && delta.deceased ? <i className = {ICONS['arrow-up']}></i>:null}
+      {delta && delta.deceased ? toShowCurDeceased : null }
+      </span></div>
 
-      <div>{toShowTested ? toShowTested : 0} <span className = "tc903TableContentTestedMore">{delta ? delta.tested:null}</span></div>
+      <div className = "tc903TableContentMainBox">{toShowTested ? toShowTested : 0} <span className = "tc903TableContentTestedMore">{delta && delta.tested ? <i className = {ICONS['arrow-up']}></i>:null}
+      {delta && delta.tested ? toShowCurTested : null }
+      </span></div>
 
       <div>{recoveryRatio ? recoveryRatio : 0}%</div>
 

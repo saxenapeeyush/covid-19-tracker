@@ -2,9 +2,11 @@ import React from 'react';
 import { Instance } from '../../utils/configs/axios';
 
 import { SORT_DATA } from '../../utils/helpers/sorting';
+import { COUNTRY_CODE } from '../../utils/configs/country';
 
 import Card from '../../common/Card';
 import Table from '../../common/Table';
+import Header from '../../common/Header';
 
 import './states.css';
 
@@ -50,6 +52,8 @@ class States extends React.Component {
 
       <div>
 
+        {this.getHeader()}
+
         {this.getCards()}
 
         {this.getTable()}
@@ -57,6 +61,14 @@ class States extends React.Component {
       </div>
 
     );
+  }
+
+  getHeader = () => {
+
+    const { stateName } = this.props.match.params;
+
+    return <Header headerTopic = {COUNTRY_CODE[stateName]} />
+
   }
 
   configState = async () => {

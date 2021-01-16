@@ -10,6 +10,7 @@ import Input from '../../ui/Input';
 import Box from '../../common/Box';
 import Notification from '../../common/Notification';
 import DateTime from '../../common/DateTime';
+import Header from '../../common/Header';
 
 import './home.css';
 import { ICONS } from '../../utils/configs/icons';
@@ -49,18 +50,9 @@ class Home extends React.Component {
 
     this.getNotificationData();
 
-    // this.timeInterval = setInterval(()=> {
-
-    //   this.setState({currentDate : new Date()});
-
-    // },1000);
-
-
   }
 
   componentWillUnmount() {
-
-    // clearInterval(this.timeInterval);
 
     this.setState = (state,callback)=>{ return; };
 }
@@ -72,6 +64,8 @@ class Home extends React.Component {
     return (
 
       <div>
+
+        {this.getHeader()}
 
         {this.getSearchBox()}
 
@@ -96,6 +90,12 @@ class Home extends React.Component {
       </div>
 
     );
+
+  }
+
+  getHeader = () => {
+
+    return <Header headerTopic = "India"/>
 
   }
 
@@ -152,11 +152,7 @@ class Home extends React.Component {
 
   } 
 
-    // setTimeout(() => {
-
       this.setState({isDataArrived:true,totalConfirmed,totalActive,totalRecovered,totalDeceased,allData : arr});
-
-    // },800);
 
   }
 
@@ -235,38 +231,21 @@ class Home extends React.Component {
     return (
       <div className = "ho378HomeInputBoxContainer">
 
+        <div  className ="ho378HomeInputInnerBoxContainer">
         <Input iconName = "search" label = "Search your state" value = {inputBoxValue} type = "text" placeholder = "Search your state" onChange = {this.searchInput}/>
 
         <Box value = {inputBoxValue} data = {boxData}/>
+        </div>
 
       </div> 
     );
   }
-
-
-
-  normalFunction = (event) => {
-
-    const target = event.target.value;
-
-    // console.log(target);
-
-    this.searchBoxHandler(target);
-
-    // this.setState({inputBoxValue : target});
-
-
-  }
-
-  betterFunction = this.debounceSearchBoxHandler(this.normalFunction,300);
 
   searchInput = (event) => {
 
     clearTimeout(this.debounce);
 
     const target = event.target.value;
-
-    // this.debounceSearchBoxHandler(this.searchBoxHandler,300);
 
     this.setState({inputBoxValue : target});
 
@@ -276,27 +255,6 @@ class Home extends React.Component {
 
     },300);
 
-    // this.searchBoxHandler(target);
-
-
-  }
-
-  debounceSearchBoxHandler(normalFn,delay) {
-
-    let timer = 0;
-
-    return function(...args) {
-
-      let myThis = this;
-
-      clearTimeout(timer);
-
-      timer = setTimeout(() => {
-
-        normalFn.apply(myThis,args);
-
-      },delay);
-    }
 
   }
 

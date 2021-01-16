@@ -9,5 +9,7 @@ export const ICONS = {
   "bell" :"far fa-bell",
   "bell-slash" :"far fa-bell-slash",
   "sort-up":"fas fa-sort-up",
-  "sort-down" :"fas fa-sort-down"
+  "sort-down" :"fas fa-sort-down",
+  "arrow-up" : "fas fa-arrow-up",
+  "arrow-down" : "fas fa-arrow-down"
 }

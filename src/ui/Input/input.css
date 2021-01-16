@@ -36,7 +36,7 @@
 
 .in871InputBlock {
   position: relative;
-  width:30%;
+  width:100%;
 }
 
 .in871InputBlock i {
@@ -56,9 +56,9 @@
   
   position: absolute;
   
-  top:-2em;
-  
-  left:44%;
+  top: 1.5em;
+  left: 44.5%;
+
   
   color: var(--inputBoxContainerLabelColor);
   
@@ -74,7 +74,7 @@
 
 .in871InputLine {
   
-  top: 0em;
+  top: 3em;
   
   left: 48%;
   
@@ -89,3 +89,71 @@
   position: absolute;
 
 }
+
+@media(max-width : 3000px) {
+
+  .in871InputBoxLabel {
+
+    left : 46%;
+
+  }
+
+}
+
+@media(max-width : 1740px) {
+
+  .in871InputBoxLabel {
+
+    left : 44.5%;
+
+  }
+
+}
+
+@media(max-width:1300px) {
+
+  .in871InputBoxLabel {
+    left : 43%;
+  }
+
+}
+
+@media(max-width:860px)  {
+
+  .in871InputBoxLabel {
+    left:40.5%;
+  }
+
+}
+
+@media(max-width:608px) {
+
+  .in871InputBoxLabel {
+
+    left : 39%;
+
+  }
+
+}
+
+@media(max-width:500px) {
+
+  .in871InputBoxLabel {
+
+    left : 35%;
+
+  }
+
+}
+
+@media(max-width:370px) {
+  .in871InputBoxLabel {
+
+    left : 30%;
+
+  }
+
+
+
+}
+

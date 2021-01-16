@@ -16,12 +16,10 @@ const Table = (props) => {
 
   const  { isAscending , curState } = isSortedData;
 
-  console.log(data);
-
   return (
 
     <div>
-      <div onClick = {sortDataOnCheck} className = {`tab760TableContainer`}>
+      <div onClick = {isDataArrived ? sortDataOnCheck : null} className = {`tab760TableContainer`}>
       {TABLE.map(({name,tag},idx) => {
 
         const newName = isDistrict && tag ==='st' ? "District" : name;

@@ -84,3 +84,49 @@
   margin:1.2em 0em;
 
 }
+
+@media(max-width : 1080px) {
+
+  .car890CardInnerContainer .car890Count {
+
+    font-size: 1em;
+  }
+
+  .car890CardInnerContainer .car890Title  {
+    font-size: 0.8em;
+  }
+  
+  .car890CardInnerContainer {
+
+    width:23%;
+
+  }
+
+}
+
+@media(max-width:562px) {
+  .car890CardInnerContainer {
+
+    width:25%;
+
+  }
+}
+
+@media(max-width:520px) {
+
+  .car890CardInnerContainer {
+
+    width:33%;
+
+  }
+
+}
+
+@media(max-width:400px) {
+  .car890CardInnerContainer {
+
+    width:50%;
+
+  }
+
+}
