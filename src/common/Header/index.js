@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import LogoImg from '../../ui/imgs/logo.png';
 
@@ -12,9 +13,9 @@ const Header = (props) => {
 
     <div className = "head681HeaderContainer">
 
-      <div><img src = {LogoImg} /></div>
+      <Link to = "/"> <div><img src = {LogoImg} /></div></Link>
 
-      <div><h1>{headerTopic}</h1></div>
+      <div className = "head681MainHeading">{headerTopic}</div>
 
     </div>
 
