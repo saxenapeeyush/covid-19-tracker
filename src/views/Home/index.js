@@ -8,41 +8,80 @@ import Card from '../../common/Card';
 import Table from '../../common/Table';
 import Input from '../../ui/Input';
 import Box from '../../common/Box';
+import Notification from '../../common/Notification';
+import DateTime from '../../common/DateTime';
+import Header from '../../common/Header';
 
 import './home.css';
+import { ICONS } from '../../utils/configs/icons';
 
 class Home extends React.Component {
 
   constructor(props) {
 
+
     super(props);
+
+    this.debounce = null;
 
     this.state = {
       totalConfirmed : 0,
       totalActive : 0,
       totalRecovered: 0,
-      totalDeceased : 0 ,
+      totalDeceased : 0,
       isDataArrived : false,
       allData : [],
       boxData :[],
       inputBoxValue : '',
+      notificationData : [],
+      toShowNotification : false,
+      currentDate: new Date(),
+      isSorted : {
+        curState : 'st',
+        isAscending : true
+      }
     };
 
   }
 
   componentDidMount() {
 
-    this.getData();
+    this.getTableData();
+
+    this.getNotificationData();
 
   }
 
+  componentWillUnmount() {
+
+    this.setState = (state,callback)=>{ return; };
+}
+
   render() {
+
+    const { toShowNotification , currentDate } = this.state;
 
     return (
 
       <div>
 
+        {this.getHeader()}
+
         {this.getSearchBox()}
+
+        <div>
+
+          <div className = "ho378DateNotifContainer">
+
+            <DateTime currentDate = {currentDate}/>
+
+            <i onClick = {this.showNotification} className = {`ho378HomeBellIconNotif ${toShowNotification ? ICONS['bell-slash'] : ICONS.bell}`}></i>
+          
+          </div>
+
+        </div>
+
+        {this.getNotificationBar()}
 
         {this.getCards()}
 
@@ -54,7 +93,32 @@ class Home extends React.Component {
 
   }
 
-  getData = async () => {
+  getHeader = () => {
+
+    return <Header headerTopic = "India"/>
+
+  }
+
+  showNotification = () => {
+
+    const { toShowNotification } = this.state;
+
+    this.setState({toShowNotification : !toShowNotification});
+
+  }
+
+  getNotificationData = async () => {
+
+    const allData = await Instance.get('/updatelog/log.json');
+
+    const data = allData?.data;
+
+    this.setState({notificationData : data});
+
+  }
+
+
+  getTableData = async () => {
 
     const allData = await Instance.get('/v4/min/data.min.json');
 
@@ -85,13 +149,10 @@ class Home extends React.Component {
       }
 
     arr.push(newObj);
+
   } 
 
-    setTimeout(() => {
-
       this.setState({isDataArrived:true,totalConfirmed,totalActive,totalRecovered,totalDeceased,allData : arr});
-
-    },800);
 
   }
 
@@ -117,23 +178,49 @@ class Home extends React.Component {
 
   getTable = () => {
 
-    const { allData , isDataArrived } = this.state;
+    const { allData , isDataArrived , isSorted } = this.state;
 
-    return <Table sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
+    return <Table isDistrict = {false} isSortedData = {isSorted} sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
+
+  }
+
+  getNotificationBar = () => {
+
+    const { notificationData , toShowNotification } = this.state;
+
+    return (
+      <div className = "ho378NotifContainer"><Notification toShow = {toShowNotification} data = {notificationData}/></div>
+    );
 
   }
 
   sortData = (event) => {
 
+    const { isSorted , allData } = this.state;
+
+    const newSortedObj = {...isSorted};
+
     const tag = event.target.getAttribute('tag');
 
     if(!tag) return;
 
-    const { allData } = this.state;
+    if(newSortedObj.curState === tag) {
 
-    const data = SORT_DATA(tag,allData);
+      const data = SORT_DATA(tag,allData,!newSortedObj.isAscending);
 
-    this.setState({allData:data});
+      newSortedObj.isAscending = !newSortedObj.isAscending;
+  
+      this.setState({allData:data,isSorted : newSortedObj});
+
+    }else{
+
+      const data = SORT_DATA(tag,allData,newSortedObj.isAscending);
+
+      newSortedObj.curState = tag;
+
+      this.setState({allData:data,isSorted : newSortedObj});
+
+    }
 
   }
 
@@ -144,61 +231,30 @@ class Home extends React.Component {
     return (
       <div className = "ho378HomeInputBoxContainer">
 
-        {/* <SingleDiv data = "Search your state"/> */}
+        <div  className ="ho378HomeInputInnerBoxContainer">
+        <Input iconName = "search" label = "Search your state" value = {inputBoxValue} type = "text" placeholder = "Search your state" onChange = {this.searchInput}/>
 
-        <Input label = "Search you state" value = {inputBoxValue} type = "text" placeholder = "Maharasthra,Delhi..." onChange = {this.searchInput}/>
-
-        <Box data = {boxData}/>
+        <Box value = {inputBoxValue} data = {boxData}/>
+        </div>
 
       </div> 
     );
   }
 
-
-  normalFunction = (event) => {
-
-    const target = event.target.value;
-
-    console.log(target);
-
-    this.searchBoxHandler(target);
-
-    // this.setState({inputBoxValue : target});
-
-
-  }
-
-  betterFunction = this.debounceSearchBoxHandler(this.normalFunction,300);
-
   searchInput = (event) => {
 
-    const target = event.target.value;
+    clearTimeout(this.debounce);
 
-    // this.debounceSearchBoxHandler(this.searchBoxHandler,300);
+    const target = event.target.value;
 
     this.setState({inputBoxValue : target});
 
-    this.searchBoxHandler(target);
+    this.debounce = setTimeout(() => {
 
+        this.searchBoxHandler(target);
 
-  }
+    },300);
 
-  debounceSearchBoxHandler(normalFn,delay) {
-
-    let timer = 0;
-
-    return function(...args) {
-
-      let myThis = this;
-
-      clearTimeout(timer);
-
-      timer = setTimeout(() => {
-
-        normalFn.apply(myThis,args);
-
-      },delay);
-    }
 
   }
 

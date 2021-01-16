@@ -1,13 +1,103 @@
 .ho378CardContainer {
+
   display: flex;
+  
   flex-wrap: wrap;
+  
   justify-content: space-around;
+
 }
 
 .ho378HomeInputBoxContainer {
+  
   position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.ho378HomeInputInnerBoxContainer {
+
+  width: 40%;
 }
 
 .ho378HomeBox {
+
   position: absolute;
+
+}
+
+.ho378NotifContainer {
+  
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  position: absolute;
+
+  width: 100%;
+}
+
+.ho378DateNotifContainer {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.ho378DateNotifContainer {
+
+  margin-top:4em;
+
+  margin-bottom: 1em;
+  
+
+}
+
+.ho378HomeBellIconNotif {
+
+  transition-duration: 0.5s;
+
+  cursor: pointer;
+
+  color: var(--notificationAboutTagLineColor);
+
+  margin:0em 1em;
+
+}
+
+.ho378HomeBellIconNotif:hover {
+  
+  color: var(--notificationIconOnHoverColor);
+
+}
+
+@media(max-width:860px) {
+
+  .ho378HomeInputInnerBoxContainer {
+    width: 60%;
+  }
+
+}
+@media(max-width:608px) {
+
+  .ho378HomeInputInnerBoxContainer {
+    width: 80%;
+  }
+
+}
+
+@media(max-width:500px) {
+
+  .ho378HomeInputInnerBoxContainer {
+    width: 90%;
+  }
+
 }

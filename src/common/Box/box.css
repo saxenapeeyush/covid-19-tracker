@@ -1,27 +1,43 @@
 .bo385BoxContent {
+
   font-size:0.9em;
-  color:#bdbdbd;
+
+  color:var(--pageContentColor);
+
   text-transform: capitalize;
+
   letter-spacing: 0.5px;
+
   font-weight: bold;
-  margin:0.5em 0em;
-  /*  */
-  /*  */
+
   width:100%;
+
+  transition-duration: 0.5s;
+
 }
 
-/* .bo378BoxInnerContainer {
-  width:100%;
-} */
+.bo385BoxContent:hover {
+
+  background: var(--defaultOnHoverTableContentColor);
+
+}
 
 .bo385BoxContent a {
+
   display: flex;
-  border-bottom: 1px solid rgba(108,117,125,0.180);
-  color:#bdbdbd;
+
+  border-bottom: 1px solid var(--searchDropDownBoxBorderBottomColor);
+
+  color:var(--pageContentColor);
+
   text-decoration: none;
+
   padding:1em 1em;
+
   width:100%;
+
   justify-content: space-between;
+
 }
 
 .bo385BoxTag {
@@ -34,9 +50,9 @@
 
   font-weight: bold;
 
-  color :#fd7e14;
+  color : var(--searchDropDownTagColor);
 
-  background-color:rgba(255,193,7,.12549);
+  background-color:var(--searchDropDownTagBackgroundColor);
 
   transition-duration: 0.5s;
 
@@ -44,20 +60,41 @@
 
 .bo378BoxInnerContainer {
 
+  width: 100%;
+
+  border: 1px solid var(--defaultOnHoverTableContentColor);
+
   text-align: center;
-  /* background :rgba(108,117,125,0.125); */
+
+  background : var(--pageBackgroundColor);
+
+  z-index: 1;
+
+  position: absolute;
+
+  top:0px;
+
 }
 
 .bo385BoxContainer {
+
+  margin: -1.68em 0em;
+
   display:flex;
+
   justify-content: center;
+  
   align-items: center;
+  
   width:100%;
+
+  position: relative;
+  
 }
 
-/* .bo385BoxContainer {
-  display:flex;
-  justify-content: center;
-  align-items: center;
-  width:100%;
-} */
+.bo378BoxInnerStrong {
+
+  color : var(--searchDropDownTagColor);
+  text-transform: unset;
+
+}

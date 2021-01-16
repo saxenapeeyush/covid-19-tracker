@@ -1,54 +1,132 @@
 
 .car489red {
-  color:rgba(255,7,58,.6);
+
+  color: var(--pageRedColorConfirmBox);
+
 }
 
 .car489red:hover {
-  background-color:rgba(255, 7, 58, 0.125);
+  
+  background-color: var(--pageRedColorConfirmBoxOnHover);
+
 }
 
 .car489blue {
-  color:#007bff;
+  
+  color: var(--pageBlueColorTestedBox);
+
 }
 
 .car489blue:hover {
-  background-color:rgba(0, 123, 255, 0.125) ;
+  
+  background-color : var(--pageBlueColorTestedBoxOnHover);
+
 }
 
 .car489green {
-  color:#28a745;
+  
+  color: var(--pageGreenColorRecoveredBox);
+
 }
 
 .car489green:hover {
-  background-color: rgba(40, 167, 69, 0.125);
+  
+  background-color: var(--pageGreenColorRecoveredBoxOnHover);
+
 }
 
 .car489default {
-  color:#bdbdbd;
+  
+  color:var(--pageContentColor);
+
 }
 
 .car489default:hover {
-  background-color:rgba(108, 117, 125, 0.125);
+  
+  background-color: var(--defaultOnHoverTableContentColor);
+
 }
 
 .car890CardInnerContainer {
+
   border-radius: 5px;
+  
   transition-duration: 0.5s;
+  
   width:15%;
+  
   padding:2em 1em;
+  
   text-align: center;
+  
   cursor:pointer;
+
 }
 
 .car890CardInnerContainer .car890Count {
+
   font-weight: bold;
+  
   font-size:1.4em;
+  
   margin:0.7em 0em;
+  
   letter-spacing: 1px;
+
 }
 
 .car890CardInnerContainer .car890Title {
+  
   font-size:1em;
+  
   font-weight:bold;
+  
   margin:1.2em 0em;
+
+}
+
+@media(max-width : 1080px) {
+
+  .car890CardInnerContainer .car890Count {
+
+    font-size: 1em;
+  }
+
+  .car890CardInnerContainer .car890Title  {
+    font-size: 0.8em;
+  }
+  
+  .car890CardInnerContainer {
+
+    width:23%;
+
+  }
+
+}
+
+@media(max-width:562px) {
+  .car890CardInnerContainer {
+
+    width:25%;
+
+  }
+}
+
+@media(max-width:520px) {
+
+  .car890CardInnerContainer {
+
+    width:33%;
+
+  }
+
+}
+
+@media(max-width:400px) {
+  .car890CardInnerContainer {
+
+    width:50%;
+
+  }
+
 }

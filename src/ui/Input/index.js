@@ -1,10 +1,11 @@
 import React from 'react';
+import { ICONS } from '../../utils/configs/icons';
 
 import './input.css';
 
 const Input = (props) => {
 
-  const { type , placeholder , onChange , value , label } = props;
+  const { type , placeholder , onChange , value , label , iconName } = props;
   
   return (
     <div>
@@ -16,7 +17,10 @@ const Input = (props) => {
 
       <div className = "in871InputLine"></div>
       
-      <input value = {value} onChange = {onChange} type = {type} placeholder = {placeholder}/>
+      <div className = "in871InputBlock">
+        <input value = {value} onChange = {onChange} type = {type} placeholder = {placeholder}/>
+        <i className = {ICONS[iconName]}></i>
+        </div>
    
     </div>
     </div>
@@ -24,4 +28,4 @@ const Input = (props) => {
 
 }
 
-export default Input;
+export default React.memo(Input);

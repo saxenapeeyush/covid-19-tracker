@@ -1,49 +1,159 @@
 .in871InputBoxContainer {
+  
   display:flex;
+  
   justify-content: center;
+  
   align-items: center;
+  
   width:100%;
+  
   margin:1.3em 0em;
+  
   margin-top: 3em;
 
 }
 
 .in871InputBoxContainer input {
+  
   margin: 0.5em 0em;
+  
   font-weight: bold;
+  
   letter-spacing: 0.5px;
-  color:#bdbdbd;
-  padding: 1em 1.4em;
-  width:33%;
-  border:none;
-  background-color: rgba(108, 117, 125, 0.125);
+  
+  color:var(--pageContentColor);
+  
+  padding: 1em 2.2em;
+  
+  width:100%;
+  
+  border:1px solid var(--defaultOnHoverTableContentColor);
+  
+  background-color: var(--defaultOnHoverTableContentColor);
+
+}
+
+.in871InputBlock {
+  position: relative;
+  width:100%;
+}
+
+.in871InputBlock i {
+  left: 0.5em;
+    position: absolute;
+    top: 1.2em;
+    cursor: pointer;
 }
 
 .in871InputBoxContainer input:focus {
+  
   outline: none;
-}
 
-.in871InputBoxContainer i {
-  color: rgba(108, 117, 125, 0.750);
 }
 
 .in871InputBoxLabel {
+  
   position: absolute;
-  top:-2em;
-  left:45%;
-  color: #6c757d;
-  font-size: .75rem;
+  
+  top: 1.5em;
+  left: 44.5%;
+
+  
+  color: var(--inputBoxContainerLabelColor);
+  
+  font-size: 0.9rem;
+  
   margin-bottom: 1rem;
+  
   font-weight: bold;
+  
   letter-spacing: 0.5px;
+
 }
 
 .in871InputLine {
-  top: 0em;
+  
+  top: 3em;
+  
   left: 48%;
+  
   width:12px;
+  
   height:1px;
-  background-color: #6c757d;
+  
+  background-color: var(--inputBoxContainerLabelColor);
+  
   transform: rotate(90deg);
+  
   position: absolute;
+
 }
+
+@media(max-width : 3000px) {
+
+  .in871InputBoxLabel {
+
+    left : 46%;
+
+  }
+
+}
+
+@media(max-width : 1740px) {
+
+  .in871InputBoxLabel {
+
+    left : 44.5%;
+
+  }
+
+}
+
+@media(max-width:1300px) {
+
+  .in871InputBoxLabel {
+    left : 43%;
+  }
+
+}
+
+@media(max-width:860px)  {
+
+  .in871InputBoxLabel {
+    left:40.5%;
+  }
+
+}
+
+@media(max-width:608px) {
+
+  .in871InputBoxLabel {
+
+    left : 39%;
+
+  }
+
+}
+
+@media(max-width:500px) {
+
+  .in871InputBoxLabel {
+
+    left : 35%;
+
+  }
+
+}
+
+@media(max-width:370px) {
+  .in871InputBoxLabel {
+
+    left : 30%;
+
+  }
+
+
+
+}
+

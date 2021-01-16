@@ -1,0 +1,19 @@
+.head681HeaderContainer {
+
+  display: flex;
+
+  justify-content: space-evenly;
+
+}
+
+.head681HeaderContainer h1 {
+
+  text-transform: capitalize;
+
+  padding:5px 10px;
+
+  color:var(--pageRedColorConfirmBox);
+
+  background: var(--pageRedColorConfirmBoxOnHover);
+
+}

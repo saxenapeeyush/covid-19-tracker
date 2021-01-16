@@ -1,9 +1,62 @@
+:root {
+
+  --pageBackgroundColor : #161625;
+  
+  --pageContentColor : #bdbdbd;
+  
+  --defaultOnHoverTableContentColor : rgba(108, 117, 125, 0.125);
+  
+  --searchDropDownTagColor : #fd7e14;
+  
+  --searchDropDownTagBackgroundColor :rgba(255,193,7,.12549);
+  
+  --searchDropDownBoxBorderBottomColor : rgba(108,117,125,0.180);
+  
+  --pageRedColorConfirmBox : rgba(255,7,58,.6);
+  
+  --pageRedColorConfirmBoxOnHover : rgba(255, 7, 58, 0.125);
+  
+  --pageBlueColorTestedBox : #007bff;
+  
+  --pageBlueColorTestedBoxOnHover : rgba(0, 123, 255, 0.125);
+  
+  --pageGreenColorRecoveredBox : #28a745;
+  
+  --pageGreenColorRecoveredBoxOnHover : rgba(40, 167, 69, 0.125);
+  
+  --tableTagContainerColor :  rgba(108, 117, 125, 0.180);
+  
+  --tableTagContainerTagOnHoverColor : rgba(108, 117, 125, 0.250);
+  
+  --inputBoxContainerLabelColor : #6c757d;
+
+  --notificationAboutTagLineColor :rgba(108,117,125,.6);
+
+  --notificationContentBackgroundColor : rgba(108,117,125,.0627451);
+
+  --notificationIconOnHoverColor : rgba(108,117,125,.9);
+
+}
+
+
 * {
+
   box-sizing: border-box;
+
 }
 
 body {
-  background : #161625;
-  color:#bdbdbd;
+
+  background : var(--pageBackgroundColor);
+  
+  color: var(--pageContentColor);
+  
   font-family: 'Roboto', sans-serif;
+
+}
+
+img { 
+
+  width: 100%;
+
 }

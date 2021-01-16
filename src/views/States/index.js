@@ -2,9 +2,11 @@ import React from 'react';
 import { Instance } from '../../utils/configs/axios';
 
 import { SORT_DATA } from '../../utils/helpers/sorting';
+import { COUNTRY_CODE } from '../../utils/configs/country';
 
 import Card from '../../common/Card';
 import Table from '../../common/Table';
+import Header from '../../common/Header';
 
 import './states.css';
 
@@ -20,7 +22,12 @@ class States extends React.Component {
       totalDeceased : 0 ,
       isDataArrived : false,
       shouldRedirectError :false,
-      allData : []};
+      allData : [],
+      isSorted : {
+        curState : 'st',
+        isAscending : true
+      }
+    };
 
   }
 
@@ -45,6 +52,8 @@ class States extends React.Component {
 
       <div>
 
+        {this.getHeader()}
+
         {this.getCards()}
 
         {this.getTable()}
@@ -54,10 +63,17 @@ class States extends React.Component {
     );
   }
 
-  configState = async () => {
+  getHeader = () => {
 
     const { stateName } = this.props.match.params;
 
+    return <Header headerTopic = {COUNTRY_CODE[stateName]} />
+
+  }
+
+  configState = async () => {
+
+    const { stateName } = this.props.match.params;
 
     const allData = await Instance.get('/v4/min/data.min.json');
 
@@ -128,25 +144,39 @@ getCards = () => {
 
   getTable = () => {
 
-    const { allData , isDataArrived } = this.state;
+    const { allData , isDataArrived , isSorted } = this.state;
 
-    return <Table sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
+    return <Table isDistrict = {true} isSortedData = {isSorted} sortDataOnCheck = {this.sortData} isDataArrived = {isDataArrived} data = {allData}/>;
 
   }
 
   sortData = (event) => {
 
+    const { isSorted , allData } = this.state;
+
+    const newSortedObj = {...isSorted};
+
     const tag = event.target.getAttribute('tag');
 
-    console.log(tag);
+    if(!tag) return;
 
-    const { allData } = this.state;
+    if(newSortedObj.curState === tag) {
 
-    console.log(allData);
+      const data = SORT_DATA(tag,allData,!newSortedObj.isAscending);
 
-    const data = SORT_DATA(tag,allData);
+      newSortedObj.isAscending = !newSortedObj.isAscending;
+  
+      this.setState({allData:data,isSorted : newSortedObj});
 
-    this.setState({allData:data});
+    }else{
+
+      const data = SORT_DATA(tag,allData,newSortedObj.isAscending);
+
+      newSortedObj.curState = tag;
+
+      this.setState({allData:data,isSorted : newSortedObj});
+
+    }
 
   }
 

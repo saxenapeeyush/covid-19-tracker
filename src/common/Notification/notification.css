@@ -1,0 +1,13 @@
+.notif587NotifInnerContainerOnOpen {
+
+  background: var(--pageBackgroundColor);
+
+  padding: 1.2em;
+
+  z-index: 100;
+
+  overflow: hidden;
+
+  border:1px solid var(--defaultOnHoverTableContentColor);
+  
+}
