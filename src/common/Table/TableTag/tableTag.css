@@ -4,7 +4,9 @@
   
   background-color: var(--defaultOnHoverTableContentColor);
   
-  padding:1em 1.3em;
+  /* padding:1em 1.3em; */
+
+  padding: 1em;
   
   border-radius: 5px;
   
@@ -12,7 +14,7 @@
   
   font-weight: bold;
   
-  margin:1em 1.5em;
+  /* margin:1em 1.5em; */
   
   transition-duration: 0.5s;
   
@@ -54,5 +56,17 @@
   right : 5px;
 
   bottom:  5px;
+
+}
+
+
+@media(max-width : 768px) {
+
+  .tabt982TableTag {
+
+    width: 100%;
+    margin: 0em 1.5em;
+
+  }
 
 }

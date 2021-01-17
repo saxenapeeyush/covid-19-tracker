@@ -53,7 +53,7 @@ const TableContent = forwardRef((props,ref) =>  {
 
       <div className = "tc903TableContentMainBox">{toShowConfirmed ? toShowConfirmed : 0} 
       <span className = "tc903TableContentConfirmedMore">{delta && delta.confirmed ? <i className = {ICONS['arrow-up']}></i>:null} 
-        {delta && delta.confirmed ? toShowConfirmed : null }
+        {delta && delta.confirmed ? toShowCurConfirmed : null }
       </span>
       </div>
 

@@ -2,7 +2,7 @@
 
   display:flex;
   
-  justify-content: space-evenly;
+  justify-content: space-between;
   
   font-size:0.8em;
   
@@ -15,6 +15,8 @@
   background: var(--tableTagContainerColor);
 
   /* overflow:scroll; */
+
+  padding: 1em;
 
 }
 .tab760stickToTop {
@@ -37,5 +39,20 @@
   color: var(--pageBlueColorTestedBox);
   background-color: var(--pageBlueColorTestedBoxOnHover);
 
+
+}
+
+@media(max-width:768px) {
+
+
+  .tab760TableContainer {
+
+    width: 500%;
+
+    overflow:scroll;
+
+    margin : 0em;
+
+  }
 
 }
