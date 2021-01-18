@@ -91,7 +91,7 @@ const sortByStateName = (allData,isAscending) => {
 
 }
 
-export const SORT_DATA = (tag,allData,isAscending) => {
+export const sortData = (tag,allData,isAscending) => {
 
   let tagLine = '';
 

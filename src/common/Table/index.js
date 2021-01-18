@@ -1,6 +1,5 @@
 import React from 'react';
 import FlipMove from 'react-flip-move';
-// import { connect } from 'react-redux';
 
 import { TABLE } from '../../utils/configs/table';
 

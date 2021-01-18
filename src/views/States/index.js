@@ -1,7 +1,6 @@
 import React from 'react';
-import { Instance } from '../../utils/configs/axios';
 
-import { SORT_DATA } from '../../utils/helpers/sorting';
+import { sortData } from '../../utils/helpers/sorting';
 import { checkAndStoreLocalStorage } from '../../utils/storage';
 import { COUNTRY_CODE } from '../../utils/configs/country';
 
@@ -163,7 +162,7 @@ getCards = () => {
 
     if(newSortedObj.curState === tag) {
 
-      const data = SORT_DATA(tag,allData,!newSortedObj.isAscending);
+      const data = sortData(tag,allData,!newSortedObj.isAscending);
 
       newSortedObj.isAscending = !newSortedObj.isAscending;
   
@@ -171,7 +170,7 @@ getCards = () => {
 
     }else{
 
-      const data = SORT_DATA(tag,allData,newSortedObj.isAscending);
+      const data = sortData(tag,allData,newSortedObj.isAscending);
 
       newSortedObj.curState = tag;
 

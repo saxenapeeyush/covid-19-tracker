@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import  { COUNTRY_CODE } from '../../../utils/configs/country';
 import { ICONS } from '../../../utils/configs/icons';
-import { addingCommasToNumbers ,convertingNumber } from '../../../utils/helpers/helper';
+import { convertingNumber } from '../../../utils/helpers/helper';
 
 import './tableContent.css';
 

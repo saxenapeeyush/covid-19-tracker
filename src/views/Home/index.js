@@ -1,9 +1,8 @@
 import React from 'react';
 
 import { checkAndStoreLocalStorage , checkAndStoreLocalStorageNotification } from '../../utils/storage';
-import { Instance } from '../../utils/configs/axios';
 import { COUNTRY_CODE } from '../../utils/configs/country';
-import { SORT_DATA } from '../../utils/helpers/sorting';
+import { sortData } from '../../utils/helpers/sorting';
 
 import Card from '../../common/Card';
 import Table from '../../common/Table';
@@ -207,7 +206,7 @@ class Home extends React.Component {
 
     if(newSortedObj.curState === tag) {
 
-      const data = SORT_DATA(tag,allData,!newSortedObj.isAscending);
+      const data = sortData(tag,allData,!newSortedObj.isAscending);
 
       newSortedObj.isAscending = !newSortedObj.isAscending;
   
@@ -215,7 +214,7 @@ class Home extends React.Component {
 
     }else{
 
-      const data = SORT_DATA(tag,allData,newSortedObj.isAscending);
+      const data = sortData(tag,allData,newSortedObj.isAscending);
 
       newSortedObj.curState = tag;
 
