@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { checkAndStoreLocalStorage , checkAndStoreLocalStorageNotification } from '../../utils/storage';
 import { Instance } from '../../utils/configs/axios';
 import { COUNTRY_CODE } from '../../utils/configs/country';
 import { SORT_DATA } from '../../utils/helpers/sorting';
@@ -109,9 +110,9 @@ class Home extends React.Component {
 
   getNotificationData = async () => {
 
-    const allData = await Instance.get('/updatelog/log.json');
+    const allData = await checkAndStoreLocalStorageNotification();
 
-    const data = allData?.data;
+    const data = allData;
 
     this.setState({notificationData : data});
 
@@ -120,9 +121,9 @@ class Home extends React.Component {
 
   getTableData = async () => {
 
-    const allData = await Instance.get('/v4/min/data.min.json');
+    const allData = await checkAndStoreLocalStorage();
 
-    const data = allData?.data;
+    const data = allData;
 
     let totalConfirmed = 0,totalActive = 0,totalRecovered = 0,totalDeceased = 0;
 

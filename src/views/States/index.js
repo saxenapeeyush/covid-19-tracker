@@ -2,6 +2,7 @@ import React from 'react';
 import { Instance } from '../../utils/configs/axios';
 
 import { SORT_DATA } from '../../utils/helpers/sorting';
+import { checkAndStoreLocalStorage } from '../../utils/storage';
 import { COUNTRY_CODE } from '../../utils/configs/country';
 
 import Card from '../../common/Card';
@@ -75,9 +76,9 @@ class States extends React.Component {
 
     const { stateName } = this.props.match.params;
 
-    const allData = await Instance.get('/v4/min/data.min.json');
+    const allData = await checkAndStoreLocalStorage();
 
-    const newData = allData?.data;
+    const newData = allData;
 
     const data = newData[stateName];
 
