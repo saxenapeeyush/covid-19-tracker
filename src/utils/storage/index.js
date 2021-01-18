@@ -5,8 +5,6 @@ import { convertTimeStampDiffToMinutes } from '../helpers/helper';
 
 const fetchDataFromApi = async () => {
 
-  console.log("call lgi yaha pe");
-
   const allData = await Instance.get('/v4/min/data.min.json');
 
   if(localStorage) {
