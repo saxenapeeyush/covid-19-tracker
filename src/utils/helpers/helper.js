@@ -58,4 +58,14 @@ export const timeDifference = (current, previous) => {
   }
 }
 
+export const convertTimeStampDiffToMinutes = (previous,current) => {
+
+  const dateDifference = Math.abs(current - previous);
+
+    const minutes = Math.floor((dateDifference/1000)/60);
+
+    return minutes;
+
+}
+
 

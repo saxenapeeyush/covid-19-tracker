@@ -4,6 +4,7 @@
 /node_modules
 /.pnp
 .eslintcache
+debug.log
 .pnp.js
 
 # testing
