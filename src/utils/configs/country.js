@@ -17,6 +17,7 @@ export const COUNTRY_CODE = {
   "KA":"karnataka",
   "KL":"kerala",
   "LA":"ladakh",
+  "LD" :"lakshwadeep",
   "MH":"maharasthra",
   "ML":"meghalaya",
   "MN":"manipur",
