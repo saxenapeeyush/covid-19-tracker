@@ -1,12 +1,21 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect , Link } from 'react-router-dom';
+
+import './error.css';
 
 const Error = () => {
 
   return (
-    <div>
+    <div className = "err395ErrorContainer">
 
-      <Redirect to = "/"></Redirect>
+      <div>
+
+        <div className = "err395ErrorTopic">You have entered a wrong URL </div>
+
+        <Link to = "/">Home Page</Link>
+
+      
+      </div>
 
     </div>
   );

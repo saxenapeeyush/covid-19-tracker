@@ -1,0 +1,46 @@
+.err395ErrorContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+}
+
+.err395ErrorTopic {
+
+color : var(--pageRedColorConfirmBox);
+
+background-color: var(--pageRedColorConfirmBoxOnHover);
+
+padding:5em;
+
+font-weight: bold;
+
+letter-spacing: 0.5px;
+
+font-size:2em;
+
+}
+
+.err395ErrorContainer a {
+
+color:var(--pageBlueColorTestedBox);
+
+text-decoration: none;
+
+display: inline-block;
+
+text-align: center;
+
+font-size:1.5em;
+
+font-weight: bold;
+
+display: flex;
+
+justify-content: center;
+
+text-decoration: underline;
+
+padding:0.5em 0em;
+
+}

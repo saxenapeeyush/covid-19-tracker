@@ -7,6 +7,7 @@ import { COUNTRY_CODE } from '../../utils/configs/country';
 import Card from '../../common/Card';
 import Table from '../../common/Table';
 import Header from '../../common/Header';
+import Error from '../../common/Error';
 
 import './states.css';
 
@@ -42,10 +43,9 @@ class States extends React.Component {
     const { shouldRedirectError } = this.state;
 
      if (shouldRedirectError) {
-      setTimeout(() => {
-        this.props.history.push('/');
-     });
-     return null;
+      
+      return <Error/>
+
     }
 
     return (
